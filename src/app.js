@@ -118,6 +118,7 @@ app.post('/login', async (req, res) => {
 
     try {
         const secret = process.env.SECRET
+        const id = user._id
         const token = jwt.sign(
             {
                 id: user._id,
@@ -125,7 +126,7 @@ app.post('/login', async (req, res) => {
             secret,
         )
 
-        res.status(200).json({ result: "Autenticação sucedida", token })
+        res.status(200).json({ result: "Autenticação sucedida", token, id })
 
     } catch (error) {
         console.log(error)

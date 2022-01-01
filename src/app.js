@@ -37,7 +37,7 @@ app.get('/user/:id', chekcToken, async (req, res) => {
 
 //Rota Publica Teste
 app.get('/', (req, res) => {
-    res.status(200).json({ result: "Testando" })
+    res.status(200).json({ result: "Seja bem vindo a API Bank server" })
 })
 
 //Registrar Usuário

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { chekcToken } = require('./middlewares/checkToken');
-const db = require('./db/db');
+// const db = require('./db/db');
 
 const cors = require('cors');
 
@@ -20,6 +20,15 @@ app.use(express.json());
 //Models
 
 const User = require('./model/User');
+
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASS
+
+mongoose.connect(`mongodb+srv://${dbUser}:${dbPassword}@bankserver.qa075.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`).then(() => {
+    console.log("Mongo connected")
+}).catch((err) => {
+    console.log(err);
+})
 
 //Rota privada
 app.get('/user/:id', chekcToken, async (req, res) => {

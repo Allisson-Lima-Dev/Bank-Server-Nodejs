@@ -37,7 +37,7 @@ app.get('/user/:id', chekcToken, async (req, res) => {
 
 //Rota Publica Teste
 app.get('/', (req, res) => {
-    res.status(200).json({ result: "Seja bem vindo a API Bank server" })
+    res.status(200).json({ result: "Seja bem vindo a API Bank server para seu projeto" })
 })
 
 //Registrar Usuário
@@ -132,9 +132,7 @@ app.post('/login', async (req, res) => {
 
         res.status(500).json({ result: "Aconteceu um erro no Servidor, tente novamente" })
     }
-
 })
-
 
 app.listen(PORT, () => {
     console.log('Server running on port:' + PORT);

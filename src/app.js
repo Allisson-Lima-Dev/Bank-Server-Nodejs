@@ -27,6 +27,7 @@ app.get('/user/:id', chekcToken, async (req, res) => {
     //check se o usuario existe
     const user = await User.findById(id, '-password')
 
+
     if (!user) {
         return res.status(404).json({ result: "Usuário não encontrado" })
     }
@@ -122,7 +123,8 @@ app.post('/login', async (req, res) => {
             },
             secret,
         )
-        res.status(200).json({ result: "Autenticação sucedida", token })
+        const name = user.name
+        res.status(200).json({ result: "Autenticação sucedida", token, name })
     } catch (error) {
         console.log(error)
 

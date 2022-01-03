@@ -123,8 +123,11 @@ app.post('/login', async (req, res) => {
             },
             secret,
         )
-        const name = user.name
-        res.status(200).json({ result: "Autenticação sucedida", token, name })
+        const id = user._id
+
+        const userV = await User.findById(id, '-password')
+
+        res.status(200).json({ result: "Autenticação sucedida", token, userV })
     } catch (error) {
         console.log(error)
 

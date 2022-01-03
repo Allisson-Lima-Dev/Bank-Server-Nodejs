@@ -7,10 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js"
   },
-  "engines": {
-    "node": "^6.9",
-    "yarn": "^0.21"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -94,12 +94,12 @@ app.post('/register-user', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email) {
-        return res.status(422).json({ result: 'Email é obrigatório' })
-    }
-    if (!password) {
-        return res.status(422).json({ result: 'Senha é obrigatório' })
-    }
+    // if (!email) {
+    //     return res.status(422).json({ result: 'Email é obrigatório' })
+    // }
+    // if (!password) {
+    //     return res.status(422).json({ result: 'Senha é obrigatório' })
+    // }
 
     //filtrar pelo email se exist
     const user = await User.findOne({ email: email })
@@ -107,7 +107,6 @@ app.post('/login', async (req, res) => {
     if (!user) {
         return res.status(404).json({ result: 'Usuario não encontrado' })
     }
-
     //check a senha 
 
     const checkPassword = await bcrypt.compare(password, user.password)
@@ -115,7 +114,6 @@ app.post('/login', async (req, res) => {
     if (!checkPassword) {
         return res.status(404).json({ result: 'Senha inválida' })
     }
-
     try {
         const secret = process.env.SECRET
         const token = jwt.sign(
@@ -124,9 +122,7 @@ app.post('/login', async (req, res) => {
             },
             secret,
         )
-
         res.status(200).json({ result: "Autenticação sucedida", token })
-
     } catch (error) {
         console.log(error)
 

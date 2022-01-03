@@ -94,12 +94,12 @@ app.post('/register-user', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    // if (!email) {
-    //     return res.status(422).json({ result: 'Email é obrigatório' })
-    // }
-    // if (!password) {
-    //     return res.status(422).json({ result: 'Senha é obrigatório' })
-    // }
+    if (!email) {
+        return res.status(422).json({ result: 'Email é obrigatório' })
+    }
+    if (!password) {
+        return res.status(422).json({ result: 'Senha é obrigatório' })
+    }
 
     //filtrar pelo email se exist
     const user = await User.findOne({ email: email })
